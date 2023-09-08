@@ -1,6 +1,7 @@
-import { NavLink } from "react-router-dom";
+import React from "react";
+import { NavLink, Outlet } from "react-router-dom";
 
-function Header() {
+function HostLayout() {
   const activeTab = {
     fontWeight: "bold",
     textDecoration: "underline",
@@ -8,32 +9,32 @@ function Header() {
   };
 
   return (
-    <header>
-      <NavLink className="site-logo" to="/">
-        #VanLife
-      </NavLink>
-      <nav>
+    <>
+      <nav className="host-nav">
         <NavLink
-          to="host"
+          to="/host"
+          // Lesson 32 explains the end keyword
+          end
           style={({ isActive }) => (isActive ? activeTab : null)}
         >
-          Host
+          Dashboard
         </NavLink>
         <NavLink
-          to="about"
+          to="/host/income"
           style={({ isActive }) => (isActive ? activeTab : null)}
         >
-          About
+          Income
         </NavLink>
         <NavLink
-          to="vans"
+          to="/host/reviews"
           style={({ isActive }) => (isActive ? activeTab : null)}
         >
-          Vans
+          Reviews
         </NavLink>
       </nav>
-    </header>
+      <Outlet />
+    </>
   );
 }
 
-export default Header;
+export default HostLayout;
