@@ -12,21 +12,30 @@ function HostLayout() {
     <>
       <nav className="host-nav">
         <NavLink
-          to="/host"
+          to="."
           // Lesson 32 explains the end keyword
           end
           style={({ isActive }) => (isActive ? activeTab : null)}
         >
           Dashboard
         </NavLink>
+
         <NavLink
-          to="/host/income"
+          to="income"
           style={({ isActive }) => (isActive ? activeTab : null)}
         >
           Income
         </NavLink>
+
         <NavLink
-          to="/host/reviews"
+          to="vans"
+          style={({ isActive }) => (isActive ? activeTab : null)}
+        >
+          Vans
+        </NavLink>
+
+        <NavLink
+          to="reviews"
           style={({ isActive }) => (isActive ? activeTab : null)}
         >
           Reviews
