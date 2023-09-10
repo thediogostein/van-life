@@ -7,15 +7,17 @@ function Vans() {
 
   const typeFilter = searchParams.get("type");
 
-  console.log(typeFilter);
-
   useEffect(() => {
     fetch("/api/vans")
       .then((res) => res.json())
       .then((data) => setVans(data.vans));
   }, []);
 
-  const vanElements = vans.map((van) => (
+  const displayedVans = typeFilter
+    ? vans.filter((van) => van.type.toLowerCase() === typeFilter.toLowerCase())
+    : vans;
+
+  const vanElements = displayedVans.map((van) => (
     <div key={van.id} className="van-tile">
       <Link to={`/vans/${van.id}`}>
         <img src={van.imageUrl} />
