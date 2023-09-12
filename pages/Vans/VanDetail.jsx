@@ -1,8 +1,10 @@
-import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import React, { useEffect, useState } from "react";
+import { Link, useParams, useLocation } from "react-router-dom";
 
 function VanDetail() {
   const [van, setVan] = useState(null);
+  const location = useLocation();
+  // console.log(location);
   const params = useParams();
 
   useEffect(() => {
@@ -11,8 +13,16 @@ function VanDetail() {
       .then((data) => setVan(data.vans));
   }, [params.id]);
 
+  //optional chaining, new javascript feature
+  const search = location.state?.search || "";
+  const type = location.state?.type || "all";
+
   return (
     <div className="van-detail-container wrapper">
+      <Link to={`..${search}`} relative="path" className="back-button">
+        &larr; <span>Back to {type} vans</span>
+      </Link>
+
       {van ? (
         <div className="van-detail">
           <img src={van.imageUrl} />
